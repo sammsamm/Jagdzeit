@@ -1,0 +1,502 @@
+//$body-bg: #FAFAFA;
+//Other pretty primary colors: E91E63 FF5722
+$accent-col: #eb7e14; //link colors
+$accent-fallback: #FFD740;
+
+$oregon-font: 'Oregon', Arial, sans-serif; // commercial font
+$actor-font: actor, sans-serif;
+$easer: cubic-bezier(.4, 0, .2, 1); //animation magic
+$zoom: 1.2;   // amount of scale on hover
+$size: 2.25em;   // size of links
+$space: 0.2;  // space between links
+
+$tile-size: 100px; // size of the tiles, width and height
+$article-width: 500px; // width of the expanded article
+$article-height: 600px; // height of the expanded article
+$tile-accent: white; // color when hovering over a tile
+$bg: #313131;
+$gray: #565656;
+$text: #838383;
+$accent: #35c2ba;
+$wheelsize: 44px;
+
+
+@import "compass/reset";
+
+
+body {
+  background: $bg;
+  font-family: $actor-font;
+}
+
+em{
+  	font-style: normal;
+	color: darkcyan;
+}
+a{
+  font-style: normal;
+  color: $accent-col;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header, footer {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 450px;
+	padding: 40px 17px;
+}
+footer {
+	text-align: right;
+	font-size: 0.7em;
+	background: $bg;
+	margin: 20px auto; // space for main:after
+	height: 100%;
+	padding: 15px 50px;
+	flex-grow: 2;
+	a {
+		margin: 0 15px;
+	}
+}
+header {
+	height: 250px;
+	background: none; // your header image
+	background-size: 280px auto;
+	flex-basis: 250px;
+}
+
+#console {
+	height: 100%;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	color: limegreen;
+	text-shadow: 0px 0px 10px limegreen;
+	transition-duration: 1s;
+	&.off {
+		opacity: 0;
+	}
+}
+.contact {
+	position: relative;
+	display: none;
+	height: 400px;
+	width: 440px;
+	padding: 20px;
+	color: black;
+	
+	p{ width: 250px; float:right;}
+	font-size: 0.8em;
+	line-height: 1.4em;
+}
+.backbtn {
+	background: url('../img/layout/backbtn.png') top left no-repeat;
+	background-size: 100% auto;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+@keyframes initialize {
+	from { transform: scaleY(0);}
+	to { transform: scaleY(1);}
+}
+.bg {
+	position: absolute;
+	background-color: grey;
+	height: 100%;
+	width: 100%;
+	box-shadow:
+		 -5px -5px 10px rgba(0,0,0, 0.3),
+		 5px -5px 10px rgba(0,0,0, 0.3); 
+	transform: scaleY(0);
+	animation-name: initialize;
+	animation-duration: .8s;
+	animation-delay: .3s;
+	animation-timing-function: $easer;
+	transform-origin: bottom;
+	animation-fill-mode: forwards;
+}
+.mainwrapper { 
+	position: relative;
+	margin: 0 auto;
+	max-width: 450px;
+	padding: 40px 0 80px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	@keyframes spin {
+		from { transform: rotate(0);}
+		to { transform: rotate(360deg)}
+	}
+	.wheel {		
+		position: absolute;
+		left: calc(50% - #{$wheelsize}/2);
+		top: calc(50%  - #{$wheelsize}); // transform didn't work here
+		height: $wheelsize;		
+		transition-duration: .6s;
+		background: url(../img/layout/Loading.svg) center center no-repeat;
+		background-size: contain;
+		animation-name: spin;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+		opacity: 0;	
+		&.loading {
+			opacity: 1;
+		}	
+	}
+}
+main {
+	margin: 0 auto;
+	width: 500px;
+	position: relative;
+	z-index: 1;
+	transition-duration: 1s;
+	&:after {
+		content: '';
+		display: block;
+		margin: -20px auto;
+		width: 600px;
+		height: 20px;
+		background: url(../img/layout/bg_cut.png) top center no-repeat;
+		background-size: 100%;		
+		position: relative;
+		left:-50px;
+	}
+}
+
+.button-open,
+.button-close,
+.closegallery {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+}
+.button-open {
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+.button-close{
+	width: 40px;
+	height: 0px;
+	right: -40px;
+	font-size: 20px;
+	line-height: 60px;
+	font-weight: bold;
+	z-index: 1000;
+	text-shadow: 0 0 5px darkgrey;
+}
+.expand .button-close {
+	right: 0; 
+}
+
+.placeholder { 
+	background: none;
+	width: $tile-size;
+	height: $tile-size;
+	margin: $space * 1em;
+}
+
+article:not(.expand){
+	box-shadow: 0 3px 6px rgba(0,0,0, .16), 0 3px 6px rgba(0,0,0, .32);
+	transition: all 0.2s;
+
+	width: $tile-size;
+	height: $tile-size;
+	position: relative;
+	&:before {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: $tile-accent;
+			transition: opacity .3s ease;
+			opacity: 0;
+	}
+	&:hover{
+		color: #fff;
+		z-index: 1;
+		box-shadow: 0 0 ($tile-size / 2) 0 rgba(#000, .65);
+		transform: scale($zoom);
+		transition: .2s;
+		overflow: hidden;
+		&:after {
+			bottom: 1em;
+			transition: .3s;
+		}
+		&:before {
+			opacity: .6;
+			transition: opacity .4s ease;
+		}
+	}
+}
+article {
+	background-color: $accent;
+	font-size: 1em;
+	text-decoration: none;
+	color: $text;
+	text-align: center;
+	overflow: hidden;
+	opacity: 1;
+	font-family: actor, sans-serif;
+	font-size: 0.9em;
+	line-height: 1.2em;
+	transform: translateX(0) translateY(0);
+	transition: all .2s, width .2s $easer .1s, height .3s ease .3s, transform .2s $easer .1s, background-position .5s $easer;
+
+	&.hidden {
+		opacity: 0;
+	}
+	
+	&.expand {
+		width: $article-width;
+		height: $article-height;
+		transform: translateX($article-width*-0.5+$tile-size*0.5) translateY($article-height*-0.2);
+		box-shadow: 0 10px 20px rgba(0,0,0, .19), 0 6px 6px rgba(0,0,0, .17);
+		border-radius: 0;
+		padding: 0;
+		margin: 0 0 40px;
+		text-align: left;
+		color: black;
+		z-index: 999;
+		position: absolute;
+		opacity: 1;
+		.content {
+			transform: translateY(0px);
+			opacity: 1;
+			transition: transform .7s $easer .05s, opacity 0s;
+		}
+		.button-open { 
+			width: 0;
+			height: 0;
+		}
+	}
+	
+	&:after {
+		content: attr(title);
+		width: 100%;
+		text-align: center;
+		left: 0;
+		color: black;
+		bottom: ($tile-size*-1); 
+		font-family: $actor-font;
+		font-size: 1em;
+		position: absolute;
+		transition: .5s;
+	}
+	&.galleryview {
+		&.gallerymode2 { // contain image
+			background-size: auto 90%;
+			background-position: center top !important;
+		}		
+		margin-bottom: 40px; 
+		.extra { //.extra can be child or sibling of .head
+				display: block !important; 
+			}
+		
+		.head {
+			h1, p {
+				opacity: 0;
+			}
+		}
+		.closegallery {
+			top: 144px !important;
+		}
+		&.view1 {
+			height: $article-height*1.2;
+			width: $article-width*1.2;
+			.content {
+				transform: translateY(440px) !important;
+			}
+		}
+		&.view2 {
+			height: $article-height*0.9;
+			width: $article-width*1.6;
+			.content {
+				transform: translateY(260px) !important;
+			}
+		}
+		
+	}
+	
+	
+	// articles here ######################################
+	//###################################################
+	/*
+	Use $article-height multiplied with a value between 0 and -1 to adjust the .expand position when using background-size: cover.
+	*/	
+	&.article-sample1 {
+		background: url() center 20% no-repeat;
+		background-size: cover;
+		&.expand { //adjust visible image section, don't use percentage
+			background-position: center $article-height*-0.2;
+		}
+		
+	}
+
+	&.article-sample2 {
+		background: url() center center no-repeat;
+		background-size: cover;
+		&.expand {
+			background-position: center $article-height*-0.2;
+		}
+		.head{
+			span{
+				background-color: antiquewhite;
+			}
+		}
+	}
+
+	
+	// articles end ######################################
+	//###################################################
+	
+	.extra {
+			display: none;
+		}
+	.togglemode {
+		width: 40px;
+		height: 40px;
+		background: url(../img/layout/min.svg) center center no-repeat,
+					rgba(255,255,255,0.8);
+		background-size: 85%;
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+		cursor: pointer;
+		&.max {
+			background: url(../img/layout/max.svg) center center no-repeat,
+						rgba(255,255,255,0.8);
+			background-size: 85%;
+		}
+	}
+	.video {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.content {  
+		transform: translateY(100%);
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: transform .2s $easer, opacity 0.2s 0.2s;
+		
+		.head {
+			position: relative;
+			display: inline-block;
+			height:$article-height*0.3;
+			width: 100%;
+			h1, p {
+				position: absolute;
+				z-index: 1;
+				padding: 0 15px;
+				width: 450px;
+			}
+			h1 {
+				font-size: 2em;
+				bottom: 1em;
+				transition-duration: .6s;
+				font-family: $actor-font;
+				span{
+					font-family: $actor-font;
+				}
+			}
+			p{
+				bottom: .3em;				
+				transition-duration: .3s;
+			}
+			.closegallery {
+				width: 100%;
+				height: 100%;
+				background-color: aliceblue;
+				box-shadow: 0 2px 3px black;
+				border: 1.5px solid $accent-col;
+				border-radius: 50%;
+				transition-duration: .2s;
+				transition-timing-function: ease-out;
+				height: 30px;
+				width: 30px;
+				left: calc(50% - 15px);
+				top: 200px;
+				opacity: .8;
+				z-index: 3;
+				&:before {
+					content: '';
+					position: absolute;
+					top: 40%;
+					left: 20%;
+					height: 20%;
+					width: 31%;
+					background: black;
+					transform: skew(0deg, -24deg);
+				}
+				&:after {
+					content: '';
+					position: absolute;
+					top: 40%;
+					right: 20%;
+					height: 20%;
+					width: 30%;
+					background: black;
+					transform: skew(0deg, 24deg);
+				}
+				&:hover {
+					opacity: 1;
+					box-shadow: 0 0 10px $accent-col;
+				}
+			}
+		}
+		
+		.body {
+			position: relative;
+			font-size: 1em;
+			color: #000;
+			background-color: white;
+			width: 100%;
+			height: $article-height*0.7;
+			padding: 0 15px;
+			box-sizing: border-box;
+			overflow-x: hidden;
+			overflow-y: scroll;
+			z-index: 5;
+			
+			
+			ul.gallery {
+				height: 60px;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				list-style-type: none;
+				margin: 20px 0 0;
+				li{
+					background-color: cadetblue;
+					width: 60px;
+					height: 60px;
+					margin: 0 5px;
+					cursor: pointer;
+				}
+			}
+			p {
+				margin: 20px 0;
+			}
+
+			.links {
+				padding-left: 15px;
+				border-top: 1px solid #E0E0E0;
+				width: 100%;
+				 a {
+					text-transform: uppercase;
+					line-height: 52px;
+					color: $accent-col;
+					padding-right:30px;
+				}
+			}
+		}
+	}
+}

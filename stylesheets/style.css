@@ -1,0 +1,601 @@
+/* line 5, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../Programme/fire.app/lib/ruby/compass_1.0/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 27, ../sass/style.scss */
+body {
+  background: #313131;
+  font-family: actor, sans-serif;
+}
+
+/* line 32, ../sass/style.scss */
+em {
+  font-style: normal;
+  color: darkcyan;
+}
+
+/* line 36, ../sass/style.scss */
+a {
+  font-style: normal;
+  color: #eb7e14;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* line 43, ../sass/style.scss */
+header, footer {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 450px;
+  padding: 40px 17px;
+}
+
+/* line 49, ../sass/style.scss */
+footer {
+  text-align: right;
+  font-size: 0.7em;
+  background: #313131;
+  margin: 20px auto;
+  height: 100%;
+  padding: 15px 50px;
+  flex-grow: 2;
+}
+/* line 57, ../sass/style.scss */
+footer a {
+  margin: 0 15px;
+}
+
+/* line 61, ../sass/style.scss */
+header {
+  height: 250px;
+  background: none;
+  background-size: 280px auto;
+  flex-basis: 250px;
+}
+
+/* line 68, ../sass/style.scss */
+#console {
+  height: 100%;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  color: limegreen;
+  text-shadow: 0px 0px 10px limegreen;
+  transition-duration: 1s;
+}
+/* line 79, ../sass/style.scss */
+#console.off {
+  opacity: 0;
+}
+
+/* line 83, ../sass/style.scss */
+.contact {
+  position: relative;
+  display: none;
+  height: 400px;
+  width: 440px;
+  padding: 20px;
+  color: black;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+/* line 91, ../sass/style.scss */
+.contact p {
+  width: 250px;
+  float: right;
+}
+
+/* line 95, ../sass/style.scss */
+.backbtn {
+  background: url("../img/layout/backbtn.png") top left no-repeat;
+  background-size: 100% auto;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+@keyframes initialize {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+/* line 106, ../sass/style.scss */
+.bg {
+  position: absolute;
+  background-color: grey;
+  height: 100%;
+  width: 100%;
+  box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.3), 5px -5px 10px rgba(0, 0, 0, 0.3);
+  transform: scaleY(0);
+  animation-name: initialize;
+  animation-duration: .8s;
+  animation-delay: .3s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom;
+  animation-fill-mode: forwards;
+}
+
+/* line 122, ../sass/style.scss */
+.mainwrapper {
+  position: relative;
+  margin: 0 auto;
+  max-width: 450px;
+  padding: 40px 0 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* line 135, ../sass/style.scss */
+.mainwrapper .wheel {
+  position: absolute;
+  left: calc(50% - 44px/2);
+  top: calc(50%  - 44px);
+  height: 44px;
+  transition-duration: .6s;
+  background: url(../img/layout/Loading.svg) center center no-repeat;
+  background-size: contain;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  opacity: 0;
+}
+/* line 148, ../sass/style.scss */
+.mainwrapper .wheel.loading {
+  opacity: 1;
+}
+
+/* line 153, ../sass/style.scss */
+main {
+  margin: 0 auto;
+  width: 500px;
+  position: relative;
+  z-index: 1;
+  transition-duration: 1s;
+}
+/* line 159, ../sass/style.scss */
+main:after {
+  content: '';
+  display: block;
+  margin: -20px auto;
+  width: 600px;
+  height: 20px;
+  background: url(../img/layout/bg_cut.png) top center no-repeat;
+  background-size: 100%;
+  position: relative;
+  left: -50px;
+}
+
+/* line 172, ../sass/style.scss */
+.button-open,
+.button-close,
+.closegallery {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+}
+
+/* line 179, ../sass/style.scss */
+.button-open {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* line 184, ../sass/style.scss */
+.button-close {
+  width: 40px;
+  height: 0px;
+  right: -40px;
+  font-size: 20px;
+  line-height: 60px;
+  font-weight: bold;
+  z-index: 1000;
+  text-shadow: 0 0 5px darkgrey;
+}
+
+/* line 194, ../sass/style.scss */
+.expand .button-close {
+  right: 0;
+}
+
+/* line 198, ../sass/style.scss */
+.placeholder {
+  background: none;
+  width: 100px;
+  height: 100px;
+  margin: 0.2em;
+}
+
+/* line 205, ../sass/style.scss */
+article:not(.expand) {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.32);
+  transition: all 0.2s;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+/* line 212, ../sass/style.scss */
+article:not(.expand):before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: opacity .3s ease;
+  opacity: 0;
+}
+/* line 221, ../sass/style.scss */
+article:not(.expand):hover {
+  color: #fff;
+  z-index: 1;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.65);
+  transform: scale(1.2);
+  transition: .2s;
+  overflow: hidden;
+}
+/* line 228, ../sass/style.scss */
+article:not(.expand):hover:after {
+  bottom: 1em;
+  transition: .3s;
+}
+/* line 232, ../sass/style.scss */
+article:not(.expand):hover:before {
+  opacity: .6;
+  transition: opacity .4s ease;
+}
+
+/* line 238, ../sass/style.scss */
+article {
+  background-color: #35c2ba;
+  font-size: 1em;
+  text-decoration: none;
+  color: #838383;
+  text-align: center;
+  overflow: hidden;
+  opacity: 1;
+  font-family: actor, sans-serif;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  transform: translateX(0) translateY(0);
+  transition: all 0.2s, width 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, height 0.3s ease 0.3s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, background-position 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /*
+  Use $article-height multiplied with a value between 0 and -1 to adjust the .expand position when using background-size: cover.
+  */
+}
+/* line 252, ../sass/style.scss */
+article.hidden {
+  opacity: 0;
+}
+/* line 256, ../sass/style.scss */
+article.expand {
+  width: 500px;
+  height: 600px;
+  transform: translateX(-200px) translateY(-120px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.17);
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 40px;
+  text-align: left;
+  color: black;
+  z-index: 999;
+  position: absolute;
+  opacity: 1;
+}
+/* line 269, ../sass/style.scss */
+article.expand .content {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.05s, opacity 0s;
+}
+/* line 274, ../sass/style.scss */
+article.expand .button-open {
+  width: 0;
+  height: 0;
+}
+/* line 280, ../sass/style.scss */
+article:after {
+  content: attr(title);
+  width: 100%;
+  text-align: center;
+  left: 0;
+  color: black;
+  bottom: -100px;
+  font-family: actor, sans-serif;
+  font-size: 1em;
+  position: absolute;
+  transition: .5s;
+}
+/* line 292, ../sass/style.scss */
+article.galleryview {
+  margin-bottom: 40px;
+}
+/* line 293, ../sass/style.scss */
+article.galleryview.gallerymode2 {
+  background-size: auto 90%;
+  background-position: center top !important;
+}
+/* line 298, ../sass/style.scss */
+article.galleryview .extra {
+  display: block !important;
+}
+/* line 303, ../sass/style.scss */
+article.galleryview .head h1, article.galleryview .head p {
+  opacity: 0;
+}
+/* line 307, ../sass/style.scss */
+article.galleryview .closegallery {
+  top: 144px !important;
+}
+/* line 310, ../sass/style.scss */
+article.galleryview.view1 {
+  height: 720px;
+  width: 600px;
+}
+/* line 313, ../sass/style.scss */
+article.galleryview.view1 .content {
+  transform: translateY(440px) !important;
+}
+/* line 317, ../sass/style.scss */
+article.galleryview.view2 {
+  height: 540px;
+  width: 800px;
+}
+/* line 320, ../sass/style.scss */
+article.galleryview.view2 .content {
+  transform: translateY(260px) !important;
+}
+/* line 333, ../sass/style.scss */
+article.article-sample1 {
+  background: url() center 20% no-repeat;
+  background-size: cover;
+}
+/* line 336, ../sass/style.scss */
+article.article-sample1.expand {
+  background-position: center -120px;
+}
+/* line 342, ../sass/style.scss */
+article.article-sample2 {
+  background: url() center center no-repeat;
+  background-size: cover;
+}
+/* line 345, ../sass/style.scss */
+article.article-sample2.expand {
+  background-position: center -120px;
+}
+/* line 349, ../sass/style.scss */
+article.article-sample2 .head span {
+  background-color: antiquewhite;
+}
+/* line 359, ../sass/style.scss */
+article .extra {
+  display: none;
+}
+/* line 362, ../sass/style.scss */
+article .togglemode {
+  width: 40px;
+  height: 40px;
+  background: url(../img/layout/min.svg) center center no-repeat, rgba(255, 255, 255, 0.8);
+  background-size: 85%;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+}
+/* line 372, ../sass/style.scss */
+article .togglemode.max {
+  background: url(../img/layout/max.svg) center center no-repeat, rgba(255, 255, 255, 0.8);
+  background-size: 85%;
+}
+/* line 378, ../sass/style.scss */
+article .video {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* line 383, ../sass/style.scss */
+article .content {
+  transform: translateY(100%);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s 0.2s;
+}
+/* line 390, ../sass/style.scss */
+article .content .head {
+  position: relative;
+  display: inline-block;
+  height: 180px;
+  width: 100%;
+}
+/* line 395, ../sass/style.scss */
+article .content .head h1, article .content .head p {
+  position: absolute;
+  z-index: 1;
+  padding: 0 15px;
+  width: 450px;
+}
+/* line 401, ../sass/style.scss */
+article .content .head h1 {
+  font-size: 2em;
+  bottom: 1em;
+  transition-duration: .6s;
+  font-family: actor, sans-serif;
+}
+/* line 406, ../sass/style.scss */
+article .content .head h1 span {
+  font-family: actor, sans-serif;
+}
+/* line 410, ../sass/style.scss */
+article .content .head p {
+  bottom: .3em;
+  transition-duration: .3s;
+}
+/* line 414, ../sass/style.scss */
+article .content .head .closegallery {
+  width: 100%;
+  height: 100%;
+  background-color: aliceblue;
+  box-shadow: 0 2px 3px black;
+  border: 1.5px solid #eb7e14;
+  border-radius: 50%;
+  transition-duration: .2s;
+  transition-timing-function: ease-out;
+  height: 30px;
+  width: 30px;
+  left: calc(50% - 15px);
+  top: 200px;
+  opacity: .8;
+  z-index: 3;
+}
+/* line 429, ../sass/style.scss */
+article .content .head .closegallery:before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  height: 20%;
+  width: 31%;
+  background: black;
+  transform: skew(0deg, -24deg);
+}
+/* line 439, ../sass/style.scss */
+article .content .head .closegallery:after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  right: 20%;
+  height: 20%;
+  width: 30%;
+  background: black;
+  transform: skew(0deg, 24deg);
+}
+/* line 449, ../sass/style.scss */
+article .content .head .closegallery:hover {
+  opacity: 1;
+  box-shadow: 0 0 10px #eb7e14;
+}
+/* line 456, ../sass/style.scss */
+article .content .body {
+  position: relative;
+  font-size: 1em;
+  color: #000;
+  background-color: white;
+  width: 100%;
+  height: 420px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 5;
+}
+/* line 470, ../sass/style.scss */
+article .content .body ul.gallery {
+  height: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  list-style-type: none;
+  margin: 20px 0 0;
+}
+/* line 477, ../sass/style.scss */
+article .content .body ul.gallery li {
+  background-color: cadetblue;
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+/* line 485, ../sass/style.scss */
+article .content .body p {
+  margin: 20px 0;
+}
+/* line 489, ../sass/style.scss */
+article .content .body .links {
+  padding-left: 15px;
+  border-top: 1px solid #E0E0E0;
+  width: 100%;
+}
+/* line 493, ../sass/style.scss */
+article .content .body .links a {
+  text-transform: uppercase;
+  line-height: 52px;
+  color: #eb7e14;
+  padding-right: 30px;
+}
